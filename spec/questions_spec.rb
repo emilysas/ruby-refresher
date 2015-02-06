@@ -33,22 +33,22 @@ describe 'the Friday test :)' do
     expect(n).to eq ['god', 'yeknom', 'tnahpele']
   end
 
-#   xit 'every_possible_pairing_of_students' do
-#     n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
-#     sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
+  xit 'every_possible_pairing_of_students' do
+    n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
+    sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
 
-#     expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
-#   end
+    expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
+  end
 
-#   xit 'all_elements_except_first_3' do
-#     n = all_elements_except_first_3 [1, 2, 3, 4, 5, 6, 7]
-#     expect(n).to eq [4, 5, 6, 7]
-#   end
+  it 'all_elements_except_first_3' do
+    n = all_elements_except_first_3 [1, 2, 3, 4, 5, 6, 7]
+    expect(n).to eq [4, 5, 6, 7]
+  end
 
-#   xit 'add_element_to_beginning_of_array' do
-#     n = add_element_to_beginning_of_array [2, 3, 4, 5], 1
-#     expect(n).to eq [1, 2, 3, 4, 5]
-#   end
+  it 'add_element_to_beginning_of_array' do
+    n = add_element_to_beginning_of_array [2, 3, 4, 5], 1
+    expect(n).to eq [1, 2, 3, 4, 5]
+  end
 
 #   xit 'array_sort_by_last_letter_of_word' do
 #     n = array_sort_by_last_letter_of_word ['sky', 'puma', 'maker']
