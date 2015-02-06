@@ -33,7 +33,7 @@ describe 'the Friday test :)' do
     expect(n).to eq ['god', 'yeknom', 'tnahpele']
   end
 
-  xit 'every_possible_pairing_of_students' do
+  it 'every_possible_pairing_of_students' do
     n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
     sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
 
@@ -55,13 +55,13 @@ describe 'the Friday test :)' do
     expect(n).to eq ['puma', 'maker', 'sky']
   end
 
-#   xit 'get_first_half_of_string' do
-#     a = get_first_half_of_string 'banana'
-#     b = get_first_half_of_string 'apple'
+  it 'get_first_half_of_string' do
+    a = get_first_half_of_string 'banana'
+    b = get_first_half_of_string 'le'
 
-#     expect(a).to eq 'ban'
-#     expect(b).to eq 'app'
-#   end
+    expect(a).to eq 'ban'
+    expect(b).to eq 'app'
+  end
 
 #   xit 'make_numbers_negative' do
 #     a = make_numbers_negative 5

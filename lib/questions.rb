@@ -29,7 +29,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice, 
 def every_possible_pairing_of_students(array)
-
+  array.combination(2)
 end
 
 # discard the first 3 elements of an array, 
@@ -53,6 +53,9 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  str_length = string.length
+  halfpoint = str_length.odd? ? (str_length+1) / 2 : str_length / 2
+  string.slice(0..halfpoint-1)
 end
 
 # turn a positive integer into a negative integer. A negative integer
