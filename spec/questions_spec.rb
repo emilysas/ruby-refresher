@@ -111,30 +111,30 @@ describe 'the Friday test :)' do
     expect(n).to eq 17
   end
 
-#   xit 'get_elements_until_greater_than_five' do
-#     n = get_elements_until_greater_than_five [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
-#     expect(n).to eq [1, 3, 5, 4, 1, 2]
-#   end
+  it 'get_elements_until_greater_than_five' do
+    n = get_elements_until_greater_than_five [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
+    expect(n).to eq [1, 3, 5, 4, 1, 2]
+  end
 
-#   xit 'convert_array_to_a_hash' do
-#     n = convert_array_to_a_hash ['a', 'b', 'c', 'd']
-#     expect(n).to eq({'a' => 'b', 'c' => 'd'})
-#   end
+  it 'convert_array_to_a_hash' do
+    n = convert_array_to_a_hash ['a', 'b', 'c', 'd']
+    expect(n).to eq({'a' => 'b', 'c' => 'd'})
+  end
 
-#   xit 'get_all_letters_in_array_of_words' do
-#     n = get_all_letters_in_array_of_words ['cat', 'dog', 'fish']
-#     expect(n).to eq ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
-#   end
+  it 'get_all_letters_in_array_of_words' do
+    n = get_all_letters_in_array_of_words ['cat', 'dog', 'fish']
+    expect(n).to eq ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
+  end
 
-#   xit 'swap_keys_and_values_in_a_hash' do
-#     n = swap_keys_and_values_in_a_hash({'a' => 'b', 'c' => 'd'})
-#     expect(n).to eq({'b' => 'a', 'd' => 'c'})
-#   end
+  it 'swap_keys_and_values_in_a_hash' do
+    n = swap_keys_and_values_in_a_hash({'a' => 'b', 'c' => 'd'})
+    expect(n).to eq({'b' => 'a', 'd' => 'c'})
+  end
 
-#   xit 'add_together_keys_and_values' do
-#     n = add_together_keys_and_values({1 => 1, 2 => 2})
-#     expect(n).to eq 6
-#   end
+  it 'add_together_keys_and_values' do
+    n = add_together_keys_and_values({1 => 1, 2 => 2})
+    expect(n).to eq 6
+  end
 
 #   xit 'remove_capital_letters_from_string' do
 #     n = remove_capital_letters_from_string 'Hello JohnDoe'
