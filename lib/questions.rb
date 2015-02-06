@@ -1,6 +1,6 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.map{|word| word if word[0] === "a"}.compact
+  array.map{|word| word if word.start_with?("a")}.compact
 end
 
 # keep only the elements that start with a vowel
@@ -15,11 +15,13 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  array.map{|word| word if word != false}.compact
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
+  array.map{|word| word.reverse}
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
