@@ -1,4 +1,7 @@
 
+
+require 'httparty'
+
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.map{|word| word if word.start_with?("a")}.compact
@@ -231,8 +234,14 @@ end
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
-def is_a_2014_bank_holiday?(date)
-
+def is_a_2015_bank_holiday?(date)
+  date = date.strftime "%Y-%m-%d"
+  b_hols = []
+  i = 0
+  data = HTTParty.get('https://www.gov.uk/bank-holidays.json')
+  dates = data["england-and-wales"]["events"]
+  dates.each {b_hols << dates[i]['date']; i+=1}
+  b_hols.include?(date)
 end
 
 # given your birthday this year, this method tells you

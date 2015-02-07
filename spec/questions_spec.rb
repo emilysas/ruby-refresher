@@ -203,9 +203,9 @@ describe 'the Friday test :)' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
-  xit 'is_a_2014_bank_holiday?' do
-    a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
-    b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
+  it 'is_a_2015_bank_holiday?' do
+    a = is_a_2015_bank_holiday?(Time.new(2015, 8, 31))
+    b = is_a_2015_bank_holiday?(Time.new(2015, 8, 30))
 
     expect(a).to be true
     expect(b).to be false
