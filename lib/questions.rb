@@ -194,7 +194,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-
+  string != string.gsub(/[^a-z ]/i,"")
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -259,7 +259,16 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(number)
+  if number / 15 != 0 && (number / 15 == number.to_f/15)
+    return "Fizzbuzz"
+  elsif number / 3 != 0 && (number / 3 == number.to_f/3)
+    return "Fizz"
+  elsif number / 5 != 0 && (number / 5 == number.to_f/5)
+    return "Buzz"
+  else
+    return number
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall

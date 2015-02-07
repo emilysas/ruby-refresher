@@ -166,7 +166,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
 
-  xit 'check_a_string_for_special_characters' do
+  it 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
 
@@ -219,5 +219,12 @@ describe 'the Friday test :)' do
   it 'count_words_of_each_length_in_a_file' do
     n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3}) 
+  end
+
+  it 'fizz_buzz_without_modulo' do
+    expect(fizzbuzz_without_modulo(9)).to eq("Fizz")
+    expect(fizzbuzz_without_modulo(10)).to eq("Buzz")
+    expect(fizzbuzz_without_modulo(30)).to eq("Fizzbuzz")
+    expect(fizzbuzz_without_modulo(7)).to eq(7)
   end
 end
