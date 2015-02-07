@@ -1,5 +1,3 @@
-
-
 require 'httparty'
 
 # keep only the elements that start with an a
@@ -287,4 +285,15 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  bottles = 99
+  98.times do
+    puts "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer."
+    bottles-=1
+    puts "Take one down and pass it around, #{bottles} bottles of beer on the wall."
+  end
+  puts "#{bottles} bottle of beer on the wall, #{bottles} bottle of beer."
+  bottles-=1
+  puts "Take one down and pass it around, no more bottles of beer on the wall."
 end
+
+
