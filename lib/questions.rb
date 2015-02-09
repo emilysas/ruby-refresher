@@ -189,7 +189,9 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   excluded = ['the', 'and', 'is', 'a', 'to', 'be', 'was', 'in']
-  string.capitalize.split(" ").map{|word| excluded.include?(word) ? word : word.capitalize}.join(" ")
+  string.capitalize.split(" ").map do |word| 
+    excluded.include?(word) ? word : word.capitalize}.join(" ")
+  end
 end
 
 # return true if a string contains any special characters
