@@ -2,12 +2,12 @@ require 'httparty'
 
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.map{|word| word if word.start_with?("a")}.compact
+  array.select{|word| word if word.start_with?("a")}
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.map{|word| word if /[aeiouAEIOU]/.match(word[0])}.compact
+  array.select{|word| word if /[aeiouAEIOU]/.match(word[0])}
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -17,7 +17,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.map{|word| word if word != false}.compact
+  array.select{|word| word}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -48,20 +48,20 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort{|a, b| a[-1] <=> b[-1]}
+  array.sort_by{|a| a[-1]}
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string[0,((string.length).round(1)/2).ceil]
+  string[0,(string.length/2.0).ceil]
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  "-#{number.abs}".to_i
+  -number.abs
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of 
@@ -77,17 +77,17 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.select{|word| word if word == word.reverse}.length
+  array.count{|word| word == word.reverse}
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.min{|a, b| a.length <=> b.length}
+  array.min_by{|a| a.length }
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.max{|a, b| a.length <=> b.length}
+  array.max_by{|a| a.length}
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -118,16 +118,14 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while{|number| number <= 5}
+  array.take_while{|i| i <= 5}
 end
 
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  new_array = []
-  array.each_slice(2){|a| new_array << a}
-  new_array.to_h
+  array.each_slice(2).to_h
 end
 
 # get all the letters used in an array of words and return
@@ -135,7 +133,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  array.join.split("").to_a.sort{|a, b| a <=> b}
+  array.join.split("").sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -155,7 +153,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.delete '/^[A-Z]+$/'
+  string.delete '/[A-Z]/'
 end
 
 # round up a float up and convert it to an Integer,
@@ -196,7 +194,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  string != string.gsub(/[^a-z^0-9]/i,"")
+  string != string.gsub(/[^a-z^A-Z^0-9]/i,"")
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -218,7 +216,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  count = File.open(file_path, 'r'){|f| f.readline.split(" ").length}
+  count = File.read(file_path).split(" ").count
 end
 
 # --- tougher ones ---
@@ -227,17 +225,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-  call(str_method.to_sym)
+  send(str_method.to_sym)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2015_bank_holiday?(date)
-  b_hols = []
-  i = 0
   dates = HTTParty.get('https://www.gov.uk/bank-holidays.json')["england-and-wales"]["events"]
-  dates.each {b_hols << dates[i]['date']; i+=1}
+  b_hols = dates.collect { |entry| entry['date'] }
   b_hols.include?(date.strftime "%Y-%m-%d")
 end
 
@@ -256,9 +252,9 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  word_length = Hash.new
+  word_length = Hash.new(0)
   word_array = File.open(file_path, 'r'){|f| f.readline.gsub(/[^a-z ]/i,"").split(" ")}
-  word_array.each {|word| word_length.has_key?(word.length) ? word_length[word.length]+=1 : word_length[word.length] = 1}
+  word_array.each {|word| word_length[word.length]+=1}
   word_length
 end
 
