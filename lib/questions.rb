@@ -234,13 +234,11 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2015_bank_holiday?(date)
-  date = date.strftime "%Y-%m-%d"
   b_hols = []
   i = 0
-  data = HTTParty.get('https://www.gov.uk/bank-holidays.json')
-  dates = data["england-and-wales"]["events"]
+  dates = HTTParty.get('https://www.gov.uk/bank-holidays.json')["england-and-wales"]["events"]
   dates.each {b_hols << dates[i]['date']; i+=1}
-  b_hols.include?(date)
+  b_hols.include?(date.strftime "%Y-%m-%d")
 end
 
 # given your birthday this year, this method tells you
